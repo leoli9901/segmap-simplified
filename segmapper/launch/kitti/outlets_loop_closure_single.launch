@@ -5,29 +5,18 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
 
   <!-- Bag file path -->
-  <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/underground/prefixed/underground1.bag"/>
+  <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/outlets/prefixed/outlets1.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file1)</rosparam>
-
-  <!-- Bag file path -->
-  <arg name="bag_file2" value="$(env HOME)/Datasets/datasets_cjw/underground/prefixed/underground2.bag"/>
-  <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file2)</rosparam>
-
-  <!-- Bag file path -->
-  <arg name="bag_file3" value="$(env HOME)/Datasets/datasets_cjw/underground/prefixed/underground3.bag"/>
-  <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file3)</rosparam>
-
 
   <!-- Rviz visualization config file path -->
   <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.rviz"/>
 
   <!-- ROS parameters -->
   <rosparam>use_sim_time: false</rosparam>
-  <rosparam command="load" file="$(find segmapper)/launch/kitti/underground_loop_closure_multi.yaml"/>
+  <rosparam command="load" file="$(find segmapper)/launch/kitti/outlets_loop_closure_multi.yaml"/>
 
   <!-- rviz node -->
   <node name="visualizer" pkg="rviz" type="rviz" output="screen" respawn="$(arg respawn_value)" args="-d $(arg rviz_config_file)" />
-
-
 
 
   <!-- segmapper node -->
@@ -38,14 +27,6 @@
 
   <!-- rosbag player node -->
   <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na0/filtered_points:=/na0/velodyne_points $(arg bag_file1)"/>
-
-  <!-- rosbag player node -->
-  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na1/filtered_points:=/na1/velodyne_points $(arg bag_file2)"/>
-
-  <!-- rosbag player node -->
- <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na2/filtered_points:=/na2/velodyne_points $(arg bag_file3)"/>
- 
- 
 
 
 
