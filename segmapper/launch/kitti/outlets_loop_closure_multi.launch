@@ -44,16 +44,16 @@
   </include>
 
   <!-- rosbag player node -->
-  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na0/filtered_points:=/na0/velodyne_points $(arg bag_file1)"/>
+  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 1 $(arg bag_file1)"/>
 
   <!-- rosbag player node -->
-  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na1/filtered_points:=/na1/velodyne_points $(arg bag_file2)"/>
+  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 2 $(arg bag_file2)"/>
 
   <!-- rosbag player node -->
 
- <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na2/filtered_points:=/na2/velodyne_points $(arg bag_file3)"/>
- <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na3/filtered_points:=/na3/velodyne_points $(arg bag_file4)"/>
- <node name="player5" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock /na4/filtered_points:=/na4/velodyne_points $(arg bag_file5)"/>
+ <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 $(arg bag_file3)"/>
+ <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 4 $(arg bag_file4)"/>
+ <node name="player5" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 5 $(arg bag_file5)"/>
  
 
 

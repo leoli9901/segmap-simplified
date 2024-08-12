@@ -29,7 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PKG = 'bag_tools' # this package name
 
-import roslib; roslib.load_manifest(PKG)
+# import roslib; roslib.load_manifest(PKG)
 import rospy
 import rosbag
 import os
@@ -37,29 +37,46 @@ import sys
 import argparse
 
 def cut(inbag, outbagfile, start, duration):
-  start_time = rospy.Time.from_sec(999999999999)
+    """
+    Cuts out a portion of data from an input bag file and writes it to an output bag file.
 
-  rospy.loginfo('   Looking for smallest time in: %s', inbag)
-  for topic, msg, t in rosbag.Bag(inbag,'r').read_messages():
-    if t < start_time:
-      start_time = t
-    break
-  rospy.loginfo('   Bagfile starts at %s', start_time)
-  start_time = start_time + rospy.Duration.from_sec(start)
-  end_time = start_time + rospy.Duration.from_sec(duration)
-  rospy.loginfo('   Cutting out from %s to %s',start_time, end_time)
-  outbag = rosbag.Bag(outbagfile, 'w')
-  num_messages = 0
-  #rospy.loginfo('   Extracting messages from:', inbag)
-  for topic, msg, t in rosbag.Bag(inbag,'r').read_messages(start_time=start_time, end_time=end_time):
-    outbag.write(topic, msg, t)
-    num_messages = num_messages + 1
-  outbag.close()
-  rospy.loginfo('     New output bagfile has %s messages', num_messages)
+    Parameters:
+        inbag (str): The path to the input bag file.
+        outbagfile (str): The path to the output bag file.
+        start (float): The starting time in seconds.
+        duration (float): The duration of the portion to cut out in seconds.
+    """
+    # Get the smallest time from the bag file
+    start_time = rospy.Time.from_sec(999999999999)
+
+    print('Looking for smallest time in: %s' % inbag)
+    # Find the smallest time in the input bag file
+    for topic, msg, t in rosbag.Bag(inbag, 'r').read_messages():
+        if t < start_time:
+            start_time = t
+            break
+    print('Bagfile starts at %s' % start_time)
+    
+    # Calculate the start and end times for cutting out the data
+    start_time = start_time + rospy.Duration.from_sec(start)
+    end_time = start_time + rospy.Duration.from_sec(duration)
+    print('Cutting out from %s to %s' % (start_time, end_time))
+
+    # Create the output bag file
+    outbag = rosbag.Bag(outbagfile, 'w')
+    num_messages = 0
+
+    # Extract messages from the input bag file within the specified time range
+    for topic, msg, t in rosbag.Bag(inbag, 'r').read_messages(start_time=start_time, end_time=end_time):
+        outbag.write(topic, msg, t)
+        num_messages += 1
+        if num_messages % 1000 == 0:
+            print('%s messages written' % num_messages)
+    outbag.close()
+    print('New output bagfile has %s messages' % num_messages)
 
 
 if __name__ == "__main__":
-  rospy.init_node('cut')
   parser = argparse.ArgumentParser(
       description='Cuts out a section from an input bagfile and writes it to an output bagfile')
   parser.add_argument('--inbag', help='input bagfile(s)', required=True)
@@ -67,8 +84,9 @@ if __name__ == "__main__":
   parser.add_argument('--start', help='start time', type=float, required=True)
   parser.add_argument('--duration', help='duration of the resulting part', type=float, required=True)
   args = parser.parse_args()
+
   try:
     cut(args.inbag, args.outbag, args.start, args.duration)
-  except Exception, e:
+  except Exception as e:
     import traceback
-traceback.print_exc()
+    traceback.print_exc()

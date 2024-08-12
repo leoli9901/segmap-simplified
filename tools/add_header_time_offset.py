@@ -30,7 +30,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PKG = 'bag_tools' # this package name
 
-import roslib; roslib.load_manifest(PKG)
+# import roslib; roslib.load_manifest(PKG)
 import rospy
 import rosbag
 import os
@@ -69,4 +69,4 @@ if __name__ == "__main__":
     add_offset(args.i, args.o, args.t, args.u)
   except Exception, e:
     import traceback
-traceback.print_exc()
+    traceback.print_exc()

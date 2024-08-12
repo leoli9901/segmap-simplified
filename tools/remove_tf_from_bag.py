@@ -9,9 +9,9 @@ import argparse
 import yaml
 
 def remove_tf(inbagfile, outbagfile, frame):
-    print '   Processing input bagfile: ', inbagfile
-    print '  Writing to output bagfile: ', outbagfile
-    print '             Removing frame: ', frame
+    print('   Processing input bagfile: ', inbagfile)
+    print('  Writing to output bagfile: ', outbagfile)
+    print('             Removing frame: ', frame)
            
     with rosbag.Bag(outbagfile, 'w') as outbag:
         for topic, msg, t in rosbag.Bag(inbagfile).read_messages():
@@ -25,7 +25,7 @@ def remove_tf(inbagfile, outbagfile, frame):
                     outbag.write(topic, msg, t)
             else:
                 outbag.write(topic, msg, t)
-    print 'Closing output bagfile and exit...'
+    print('Closing output bagfile and exit...')
     outbag.close();
             
 if __name__ == "__main__":
@@ -36,6 +36,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     try:
         remove_tf(args.i,args.o,args.f)
-    except Exception, e:
+    except Exception as e:
         import traceback
         traceback.print_exc()
