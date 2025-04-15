@@ -67,7 +67,7 @@ tags
 
 # Rosbags and rviz config #
 ###########################
-*.rviz
+#*.rviz
 *.bag
 
 # Matlab data #
@@ -83,3 +83,17 @@ segmatch/matlab/figures
 *.png
 *.pkl
 
+# VSCode files #
+###############
+.vscode/
+
+# CLion files #
+##############
+.idea/
+.clion/
+
+# PyCharm files #
+#################
+.idea/
+.pycharm_helpers/
+.pydevproject

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #coding=utf-8
 """
 使用Python2打开此脚本, Python3可能有问题
@@ -152,6 +152,12 @@ def cut_and_add_prefix(
                 param = data['segment_{}'.format(i + 1)]
                 start_time = param['start_time']
                 end_time = param['end_time']
+                if end_time > bag_duration:
+                    end_time = bag_duration
+                    print("Warning: segment {} end_time exceeds bag duration, set to bag duration.".format(i + 1))
+                if start_time > bag_duration:    
+                    start_time = bag_duration
+                    print("Warning: segment {} start_time exceeds bag duration, set to bag duration.".format(i + 1))
                 if start_time >= 0 and end_time >= 0 and start_time <= bag_duration and end_time <= bag_duration:
                     print(" -  [{}, {}]".format(start_time, end_time))
                     cutting_timestamp_pair_list.append((bag_start + start_time, bag_start + end_time))     

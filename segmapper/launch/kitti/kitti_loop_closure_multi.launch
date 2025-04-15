@@ -5,11 +5,10 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
 
   <!-- Bag file path -->
-  <arg name="bag_file1" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_27_114_0_na0.bag"/>
-  <arg name="bag_file2" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_27_213_105_na1.bag"/>
-  <arg name="bag_file3" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_27_307_205_na2.bag"/>
-  <arg name="bag_file4" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_27_396_297_na3.bag"/>
-  <arg name="bag_file5" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_27_388_471_na4.bag"/>
+  <arg name="bag_file1" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_0_45_na0.bag"/>
+  <arg name="bag_file2" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_25_75_na1.bag"/>
+  <arg name="bag_file3" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_85_190_na2.bag"/>
+  <arg name="bag_file4" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_170_287_na3.bag"/>
 
 
   <!-- Rviz visualization config file path -->
@@ -36,7 +35,6 @@
   <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file2)"/>
   <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file3)"/>
   <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file4)"/>
-  <node name="player5" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file5)"/>
 
 
 
