@@ -13,7 +13,7 @@ SegMapper: {
     use_odometry_information: true,
     
     odom_frame: "odom",
-    sensor_frame: "base_link",
+    sensor_frame: "lidar_link",
     
     assembled_cloud_sub_topic: "/cloud_deskewed",
     trajectory_pub_topic: "trajectory",

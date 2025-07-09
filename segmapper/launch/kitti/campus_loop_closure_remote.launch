@@ -7,14 +7,14 @@
   <!-- /tf remapper nodes -->
   <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_0">
     <rosparam param="mappings">
-        [{old: /odom, new: /na0/odom},{old: /base_link, new: /na0/base_link}, {old: /lidar_link, new: /na0/lidar_link}]
+        [{old: odom, new: na0/odom},{old: base_link, new: na0/base_link}, {old: lidar_link, new: na0/lidar_link}, {old: map, new: ''}, {old: sensor, new: ''}, {old: vehicle, new: ''}]
     </rosparam>
     <rosparam param="old_tf_topic_name">/na0/tf </rosparam>
   </node>
 
   <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_1">
     <rosparam param="mappings">
-        [{old: /odom, new: /na1/odom},{old: /base_link, new: /na1/base_link}, {old: /lidar_link, new: /na1/lidar_link}]
+       [{old: odom, new: na0/odom},{old: base_link, new: na0/base_link}, {old: lidar_link, new: na0/lidar_link}, {old: map, new: ''}, {old: sensor, new: ''}, {old: vehicle, new: ''}]
     </rosparam>
     <rosparam param="old_tf_topic_name">/na1/tf </rosparam>
   </node>
