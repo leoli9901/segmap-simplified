@@ -5,17 +5,16 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
 
   <!-- Bag file path -->
-  <arg name="bag_file1" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_0_45_na0.bag"/>
-  <arg name="bag_file2" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_25_75_na1.bag"/>
-  <arg name="bag_file3" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_85_190_na2.bag"/>
-  <arg name="bag_file4" value="$(env HOME)/Datasets/segmap_data/kitti_new_dataset/drive_18_170_287_na3.bag"/>
+  <arg name="bag_file1" value="$(env HOME)/Datasets/KITTI_odom/dataset/na0_08_lidar_0_102.bag"/>
+  <arg name="bag_file2" value="$(env HOME)/Datasets/KITTI_odom/dataset/na1_08_lidar_92_216.bag"/>
+  <arg name="bag_file3" value="$(env HOME)/Datasets/KITTI_odom/dataset/na2_08_lidar_327_197.bag"/>
+  <arg name="bag_file4" value="$(env HOME)/Datasets/KITTI_odom/dataset/na3_08_lidar_423_316.bag"/>
 
 
   <!-- Rviz visualization config file path -->
   <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.rviz"/>
 
   <!-- ROS parameters -->
-  <rosparam>use_sim_time: false</rosparam>
   <rosparam command="load" file="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.yaml"/>
 
   <!-- rviz node -->
@@ -31,10 +30,10 @@
   </include>
   
   <!-- rosbag player node -->
-  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file1)"/>
-  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file2)"/>
-  <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file3)"/>
-  <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 5 $(arg bag_file4)"/>
+  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 1 $(arg bag_file1) "/>
+  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 $(arg bag_file2) "/>
+  <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 5 $(arg bag_file3) "/>
+  <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 7 $(arg bag_file4) "/>
 
 
 

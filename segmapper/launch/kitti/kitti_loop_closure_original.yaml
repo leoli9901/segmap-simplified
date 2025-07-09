@@ -2,7 +2,7 @@ SegMapper: {
   number_of_robots: 1,
   robot_prefix: "na",
   
-  world_frame: "map",
+  world_frame: "world",
   clear_local_map_after_loop_closure: false,
   
   publish_world_to_odom: true,
@@ -11,8 +11,8 @@ SegMapper: {
   LaserSlamWorker: {
     use_odometry_information: true,
     
-    odom_frame: "world",
-    sensor_frame: "velodyne",
+    odom_frame: "velo_init",
+    sensor_frame: "velo_link",
     
     assembled_cloud_sub_topic: "/velodyne_points",
     trajectory_pub_topic: "trajectory",

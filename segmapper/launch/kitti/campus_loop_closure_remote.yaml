@@ -1,5 +1,5 @@
 SegMapper: {
-  number_of_robots: 4,
+  number_of_robots: 2,
   robot_prefix: "na",
   
   world_frame: "map",

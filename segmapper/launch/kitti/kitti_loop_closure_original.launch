@@ -5,15 +5,13 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
   
   <!-- Bag file path -->  
-  <arg name="bag_file" value="$(env HOME)/Datasets/segmap_data/kitti/2011_10_03_drive_27.bag"/>
+  <arg name="bag_file" value="$(env HOME)/Datasets/KITTI_odom/dataset/08_lidar.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file)</rosparam>
 
   <!-- Rviz visualization config file path -->
   <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_original.rviz"/>
 
   <!-- ROS parameters -->
-  <rosparam>use_sim_time: true</rosparam>
-
   <rosparam command="load" file="$(find segmapper)/launch/kitti/kitti_loop_closure_original.yaml"/>
   
 
@@ -21,7 +19,7 @@
   <node name="visualizer" pkg="rviz" type="rviz" output="screen" respawn="$(arg respawn_value)" args="-d $(arg rviz_config_file)" />
   
   <!-- rosbag player node -->
-  <node name="player" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 --clock --pause $(arg bag_file)"/>
+  <node name="player" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 --clock --pause $(arg bag_file) /kitti/velo/pointcloud:=/velodyne_points"/>
 
     <!-- segmapper node -->
   <include file="$(find segmapper)/launch/segmapper.launch">

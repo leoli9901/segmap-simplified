@@ -1,21 +1,21 @@
 SegMapper: {
-  number_of_robots: 4,
+  number_of_robots: 3,
   robot_prefix: "na",
   
   world_frame: "map",
   clear_local_map_after_loop_closure: false,
   
-  publish_world_to_odom: false,
-  publish_overall_local_map: false,
+  publish_world_to_odom: true,
+  publish_overall_local_map: true,
   tf_publication_rate_hz: 10,
   
   LaserSlamWorker: {
     use_odometry_information: true,
     
-    odom_frame: "camera_init",
-    sensor_frame: "aft_mapped",
+    odom_frame: "odom",
+    sensor_frame: "odom_mapping",
     
-    assembled_cloud_sub_topic: "/filtered_points",
+    assembled_cloud_sub_topic: "cloud_deskewed",
     trajectory_pub_topic: "trajectory",
     odometry_trajectory_pub_topic: "odometry_trajectory",
     full_map_pub_topic: "full_map",
@@ -59,7 +59,7 @@ SegMapper: {
     LocalMap: {
       voxel_size_m: 0.1, #0.1
       min_points_per_voxel: 1,
-      radius_m: 75,
+      radius_m: 60,
       min_vertical_distance_m: -999.0,
       max_vertical_distance_m: 999.0,
       neighbors_provider_type: "KdTree",
@@ -77,8 +77,8 @@ SegMapper: {
     },
 
     Classifier: {
-     threshold_to_accept_match: 0.80, #0.6
-     n_nearest_neighbours: 300, #120
+     threshold_to_accept_match: 0.8, #0.6
+     n_nearest_neighbours: 200, #120
      knn_feature_dim: 7,
      enable_two_stage_retrieval: true,
      apply_hard_threshold_on_feature_distance: true,
@@ -93,7 +93,7 @@ SegMapper: {
     GeometricConsistency: {
       recognizer_type: "Incremental", #"Simple", "Partitioned","Incremental"
       resolution: 0.4,
-      min_cluster_size: 9, #8
+      min_cluster_size: 8, #8
       max_consistency_distance_for_caching: 3.0, #3
     }
   },

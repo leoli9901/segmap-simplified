@@ -1,8 +1,8 @@
 SegMapper: {
-  number_of_robots: 4,
-  robot_prefix: "na",
+  number_of_robots: 4, # 大于1开启多机模式
+  robot_prefix: "na",  # 多机下的前缀
   
-  world_frame: "map",
+  world_frame: "world", # 按照tf的实际结构修改
   clear_local_map_after_loop_closure: false,
   
   publish_world_to_odom: true,
@@ -12,10 +12,10 @@ SegMapper: {
   LaserSlamWorker: {
     use_odometry_information: true,
     
-    odom_frame: "world",
-    sensor_frame: "velodyne",
+    odom_frame: "velo_init", # tf中velodyne的初始frame
+    sensor_frame: "velo_link", # tf中velodyne的移动frame
     
-    assembled_cloud_sub_topic: "velodyne_points",
+    assembled_cloud_sub_topic: "kitti/velo/pointcloud", # 点云topic
     trajectory_pub_topic: "trajectory",
     odometry_trajectory_pub_topic: "odometry_trajectory",
     full_map_pub_topic: "full_map",

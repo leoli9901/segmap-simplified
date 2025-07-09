@@ -5,19 +5,19 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
 
     <!-- Bag file path -->
-  <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus1.bag"/>
+  <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus1_20Hz.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file1)</rosparam>
 
   <!-- Bag file path -->
-  <arg name="bag_file2" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus2.bag"/>
+  <arg name="bag_file2" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus2_20Hz.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file2)</rosparam>
 
     <!-- Bag file path -->
 
-  <arg name="bag_file3" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus3.bag"/>
+  <arg name="bag_file3" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus3_20Hz.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file3)</rosparam>
     <!-- Bag file path -->
-  <arg name="bag_file4" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus4.bag"/>
+  <arg name="bag_file4" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus4_20Hz.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file4)</rosparam>
 
 
@@ -42,15 +42,15 @@
   </include>
 
   <!-- rosbag player node -->
-  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 --clock /na0/filtered_points:=/na0/velodyne_points $(arg bag_file1)"/>
+  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file1)"/>
 
   <!-- rosbag player node -->
-  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 --clock /na1/filtered_points:=/na1/velodyne_points $(arg bag_file2)"/>
+  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file2)"/>
 
   <!-- rosbag player node -->
 
- <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 --clock /na2/filtered_points:=/na2/velodyne_points $(arg bag_file3)"/>
- <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 --clock /na3/filtered_points:=/na3/velodyne_points $(arg bag_file4)"/>
+ <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file3)"/>
+ <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file4)"/>
 
 
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+    <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
+
+    <!-- Rviz visualization config file path -->
+    <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.rviz"/>
+
+    <!-- ROS parameters -->
+    <rosparam>use_sim_time: false</rosparam>
+    <rosparam command="load" file="$(find segmapper)/launch/kitti/ZGSLAM_multi.yaml"/>
+
+    <!-- rviz node -->
+    <node name="visualizer" pkg="rviz" type="rviz" output="screen" respawn="$(arg respawn_value)" args="-d $(arg rviz_config_file)" />
+
+    <!-- segmapper node -->
+    <include file="$(find segmapper)/launch/segmapper.launch">
+        <arg name="icp_configuration_file" value="$(find segmapper)/launch/kitti/icp_dynamic_outdoor.yaml"/>
+        <arg name="icp_input_filters_file" value="$(find segmapper)/launch/kitti/input_filters_outdoor_ZGSLAM.yaml"/>
+    </include>
+
+    <!-- player node >
+
+    <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_0">
+        <rosparam param="mappings">
+            [{old: /na0/camera_init, new: /na0/odom},{old: /na0/aft_mapped, new: /na0/odom_mapping}]
+        </rosparam>
+        <rosparam param="old_tf_topic_name">/na0/tf_old </rosparam>
+    </node>
+
+    <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_1">
+        <rosparam param="mappings">
+            [{old: /na1/camera_init, new: /na1/odom},{old: /na1/aft_mapped, new: /na1/odom_mapping}]
+        </rosparam>
+        <rosparam param="old_tf_topic_name">/na1/tf_old </rosparam>
+    </node>
+
+    <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_2">
+        <rosparam param="mappings">
+            [{old: /na2/camera_init, new: /na2/odom},{old: /na2/aft_mapped, new: /na2/odom_mapping}]
+        </rosparam>
+        <rosparam param="old_tf_topic_name">/na2/tf_old </rosparam>
+    </node>
+
+    <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus1.bag"/>
+    <arg name="bag_file2" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus2.bag"/>
+    <arg name="bag_file3" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus3.bag"/>
+    
+    <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file1)">
+        <remap from="/na0/filtered_points" to="/na0/cloud_deskewed" />
+        <remap from="/tf" to="/na0/tf_old" />
+    </node>
+
+    <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file2)">
+        <remap from="/na1/filtered_points" to="/na1/cloud_deskewed" />
+        <remap from="/tf" to="/na1/tf_old" />
+    </node>
+
+    <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file3)">
+        <remap from="/na2/filtered_points" to="/na2/cloud_deskewed" />
+        <remap from="/tf" to="/na2/tf_old" />
+    </node -->
+
+</launch>

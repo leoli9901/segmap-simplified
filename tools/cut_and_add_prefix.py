@@ -235,11 +235,11 @@ def cut_and_add_prefix(
             # 排序以确保时间戳递增
             msg_list.sort(key=lambda x: x[2].to_sec())
             
-            # '[原文件名]_[在原bag中的起始时间]_[在原bag中的结束时间]_[前缀].bag'
+            # '[前缀]_[原文件名]_[在原bag中的起始时间]_[在原bag中的结束时间].bag'
             if reverse_flag:
-                output_bag_path = "{}_{:.0f}_{:.0f}_{}{}{}".format(path.splitext(input_bag_path)[0], end_time - inbag.get_start_time(), start_time - inbag.get_start_time(), prefix, i, path.splitext(input_bag_path)[1])
+                output_bag_path = "{}{}_{}_{:.0f}_{:.0f}{}".format(prefix, i, path.splitext(input_bag_path)[0], end_time - inbag.get_start_time(), start_time - inbag.get_start_time(), path.splitext(input_bag_path)[1])
             else:
-                output_bag_path = "{}_{:.0f}_{:.0f}_{}{}{}".format(path.splitext(input_bag_path)[0], start_time - inbag.get_start_time(), end_time - inbag.get_start_time(), prefix, i, path.splitext(input_bag_path)[1])
+                output_bag_path = "{}{}_{}_{:.0f}_{:.0f}{}".format(prefix, i, path.splitext(input_bag_path)[0], start_time - inbag.get_start_time(), end_time - inbag.get_start_time(), path.splitext(input_bag_path)[1])
             print("Writing segment {} to {}".format(i + 1, path.split(output_bag_path)[1]))
             outbag = rosbag.Bag(output_bag_path, 'w')
             
