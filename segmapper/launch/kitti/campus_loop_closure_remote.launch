@@ -4,19 +4,20 @@
 
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
 
-  <!-- Bag file path -->
-  <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus1.bag"/>
-  <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file1)</rosparam>
+  <!-- /tf remapper nodes -->
+  <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_0">
+    <rosparam param="mappings">
+        [{old: /odom, new: /na0/odom},{old: /base_link, new: /na0/base_link}, {old: /lidar_link, new: /na0/lidar_link}]
+    </rosparam>
+    <rosparam param="old_tf_topic_name">/na0/tf </rosparam>
+  </node>
 
-  <!-- Bag file path -->
-  <arg name="bag_file2" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus2.bag"/>
-  <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file2)</rosparam>
-
-  <!-- Bag file path -->
-  <arg name="bag_file3" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus3.bag"/>
-  <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file3)</rosparam>
-
-
+  <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_1">
+    <rosparam param="mappings">
+        [{old: /odom, new: /na1/odom},{old: /base_link, new: /na1/base_link}, {old: /lidar_link, new: /na1/lidar_link}]
+    </rosparam>
+    <rosparam param="old_tf_topic_name">/na1/tf </rosparam>
+  </node>
 
   <!-- Rviz visualization config file path -->
   <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.rviz"/>

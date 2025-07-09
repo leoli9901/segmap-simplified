@@ -12,10 +12,10 @@ SegMapper: {
   LaserSlamWorker: {
     use_odometry_information: true,
     
-    odom_frame: "camera_init",
-    sensor_frame: "aft_mapped",
+    odom_frame: "odom",
+    sensor_frame: "base_link",
     
-    assembled_cloud_sub_topic: "/filtered_points",
+    assembled_cloud_sub_topic: "/cloud_deskewed",
     trajectory_pub_topic: "trajectory",
     odometry_trajectory_pub_topic: "odometry_trajectory",
     full_map_pub_topic: "full_map",
