@@ -6,18 +6,19 @@
 
   <!-- /tf remapper nodes -->
   <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_0">
-    <rosparam param="mappings">
-        [{old: odom, new: na0/odom},{old: base_link, new: na0/base_link}, {old: lidar_link, new: na0/lidar_link}, {old: map, new: ''}, {old: sensor, new: ''}, {old: vehicle, new: ''}]
-    </rosparam>
-    <rosparam param="old_tf_topic_name">/na0/tf </rosparam>
+    <rosparam param="old_tf_topic_name">na0/tf </rosparam>
   </node>
 
   <node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_1">
-    <rosparam param="mappings">
-       [{old: odom, new: na0/odom},{old: base_link, new: na0/base_link}, {old: lidar_link, new: na0/lidar_link}, {old: map, new: ''}, {old: sensor, new: ''}, {old: vehicle, new: ''}]
-    </rosparam>
-    <rosparam param="old_tf_topic_name">/na1/tf </rosparam>
+    <rosparam param="old_tf_topic_name">na1/tf </rosparam>
   </node>
+
+  <!-- receiver node (multibotnet) -->
+  <include file="$(find multibotnet)/launch/multibotnet.launch">
+    <arg name="config_file" value="$(find multibotnet)/config/segmap_recv_12.yaml"/>
+    <arg name="print_statistics" value="true"/>
+    <arg name="statistics_interval" value="10.0"/>
+  </include>
 
   <!-- Rviz visualization config file path -->
   <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.rviz"/>
