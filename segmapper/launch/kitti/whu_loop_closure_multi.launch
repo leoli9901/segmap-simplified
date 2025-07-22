@@ -5,11 +5,11 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
 
     <!-- Bag file path -->
-  <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/whu/prefixed/whu1.bag"/>
+  <arg name="bag_file1" value="$(env HOME)/20250719-NUC/20-36-13-out2.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file1)</rosparam>
 
   <!-- Bag file path -->
-  <arg name="bag_file2" value="$(env HOME)/Datasets/datasets_cjw/whu/prefixed/whu2.bag"/>
+  <arg name="bag_file2" value="$(env HOME)/20250719-NUC/20-41-25-out.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file2)</rosparam>
 
     <!-- Bag file path -->
@@ -38,13 +38,10 @@
   </include>
 
   <!-- rosbag player node -->
-  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 4 -s 0 -d 3 --clock $(arg bag_file1)"/>
+  <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock $(arg bag_file1)"/>
 
   <!-- rosbag player node -->
-  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 4 -s 0 -d 3 --clock $(arg bag_file2)"/>
+  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 2 -s 0 -d 3 --clock $(arg bag_file2) /na0/cloud_deskewed:=/na1/cloud_deskewed"/>
 
-  <!-- rosbag player node -->
-
- <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 4 -s 0 -d 3 --clock $(arg bag_file3)"/>
 
 </launch>

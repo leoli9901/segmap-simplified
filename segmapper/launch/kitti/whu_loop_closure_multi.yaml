@@ -1,21 +1,21 @@
 SegMapper: {
-  number_of_robots: 3,
+  number_of_robots: 2,
   robot_prefix: "na",
   
   world_frame: "map",
-  clear_local_map_after_loop_closure: false,
+  clear_local_map_after_loop_closure: true,
   
-  publish_world_to_odom: true,
+  publish_world_to_odom: false,
   publish_overall_local_map: true,
   tf_publication_rate_hz: 10,
   
   LaserSlamWorker: {
     use_odometry_information: true,
     
-    odom_frame: "camera_init",
-    sensor_frame: "aft_mapped",
+    odom_frame: "odom",
+    sensor_frame: "base_link",
     
-    assembled_cloud_sub_topic: "/velodyne_points",
+    assembled_cloud_sub_topic: "/cloud_deskewed",
     trajectory_pub_topic: "trajectory",
     odometry_trajectory_pub_topic: "odometry_trajectory",
     full_map_pub_topic: "full_map",

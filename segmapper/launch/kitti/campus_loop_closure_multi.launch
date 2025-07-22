@@ -5,11 +5,11 @@
   <arg name="respawn_value" default="false" /> <!-- boolean: true, false -->
 
     <!-- Bag file path -->
-  <arg name="bag_file1" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus1_20Hz.bag"/>
+  <arg name="bag_file1" value="$(env HOME)/20250719-NUC/20-36-13-out2.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file1)</rosparam>
 
   <!-- Bag file path -->
-  <arg name="bag_file2" value="$(env HOME)/Datasets/datasets_cjw/campus/prefixed/campus2_20Hz.bag"/>
+  <arg name="bag_file2" value="$(env HOME)/20250719-NUC/20-41-25-out.bag"/>
   <rosparam param="LaserMapper/bag_file" subst_value="True">$(arg bag_file2)</rosparam>
 
     <!-- Bag file path -->
@@ -23,7 +23,7 @@
 
 
   <!-- Rviz visualization config file path -->
-  <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.rviz"/>
+  <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi_a.rviz"/>
 
   <!-- ROS parameters -->
   <rosparam>use_sim_time: false</rosparam>
@@ -45,13 +45,7 @@
   <node name="player1" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file1)"/>
 
   <!-- rosbag player node -->
-  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file2)"/>
-
-  <!-- rosbag player node -->
-
- <node name="player3" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file3)"/>
- <node name="player4" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file4)"/>
-
+  <node name="player2" pkg="rosbag" type="play" output="screen" args=" -r 1 -s 0 -d 3 $(arg bag_file2) /na0/cloud_deskewed:=/na1/cloud_deskewed"/>
 
 
 </launch>

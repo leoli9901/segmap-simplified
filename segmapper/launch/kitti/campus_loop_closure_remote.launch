@@ -13,15 +13,8 @@
     <rosparam param="old_tf_topic_name">na1/tf </rosparam>
   </node>
 
-  <!-- receiver node (multibotnet) -->
-  <include file="$(find multibotnet)/launch/multibotnet.launch">
-    <arg name="config_file" value="$(find multibotnet)/config/segmap_recv_12.yaml"/>
-    <arg name="print_statistics" value="true"/>
-    <arg name="statistics_interval" value="10.0"/>
-  </include>
-
   <!-- Rviz visualization config file path -->
-  <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi.rviz"/>
+  <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi_a.rviz"/>
 
   <!-- ROS parameters -->
   <rosparam>use_sim_time: false</rosparam>
