@@ -53,12 +53,12 @@ SegMapper: {
     boundary_radius_m: 100.0,
     filter_duplicate_segments: true,
     centroid_distance_threshold_m: 2.5, #2.5
-    min_time_between_segment_for_matches_s: 60, #60
+    min_time_between_segment_for_matches_s: 60, # 60
     check_pose_lies_below_segments: false,
 
     LocalMap: {
       voxel_size_m: 0.1, #0.1
-      min_points_per_voxel: 2, #1
+      min_points_per_voxel: 1, #1
       radius_m: 50.0,
       min_vertical_distance_m: -25.0,
       max_vertical_distance_m: 50.0,
@@ -77,7 +77,7 @@ SegMapper: {
     },
 
     Classifier: {
-     threshold_to_accept_match: 0.60, #0.6
+     threshold_to_accept_match: 0.50, #0.6
      n_nearest_neighbours: 150, #120
      knn_feature_dim: 7,
      enable_two_stage_retrieval: true,

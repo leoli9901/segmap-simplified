@@ -70,18 +70,26 @@ def filter_rosbag(input_bag_path, output_bag_path, frames_to_keep, decimation_ra
                                 prefix_tup = transform.header.frame_id.split('/', 1)
                                 if len(prefix_tup) == 2:
                                     [prefix, de_prefix]  = prefix_tup
-                                    if new_frame_prefix != None and (old_frame_prefix == None or prefix == old_frame_prefix):
-                                        transform.header.frame_id = new_frame_prefix + '/' + de_prefix
-                                    elif old_frame_prefix != None and new_frame_prefix == None:
-                                        transform.header.frame_id = de_prefix
-                                        
+                                elif len(prefix_tup) == 1:
+                                    de_prefix = prefix_tup[0]
+                                    prefix = ''
+
+                                if new_frame_prefix != None and (old_frame_prefix == None or prefix == old_frame_prefix):
+                                    transform.header.frame_id = new_frame_prefix + '/' + de_prefix
+                                elif old_frame_prefix != None and new_frame_prefix == None:
+                                     transform.header.frame_id = de_prefix
+
                                 prefix_tup = transform.child_frame_id.split('/', 1)
                                 if len(prefix_tup) == 2:
                                     [prefix, de_prefix]  = prefix_tup
-                                    if new_frame_prefix != None and (old_frame_prefix == None or prefix == old_frame_prefix):
-                                        transform.child_frame_id = new_frame_prefix + '/' + de_prefix
-                                    elif old_frame_prefix != None and new_frame_prefix == None:
-                                        transform.child_frame_id = de_prefix
+                                elif len(prefix_tup) == 1:
+                                    de_prefix = prefix_tup[0]
+                                    prefix = ''
+
+                                if new_frame_prefix != None and (old_frame_prefix == None or prefix == old_frame_prefix):
+                                    transform.child_frame_id = new_frame_prefix + '/' + de_prefix
+                                elif old_frame_prefix != None and new_frame_prefix == None:
+                                    transform.child_frame_id = de_prefix
 
                                 filtered_tf_msg.transforms.append(transform)
                         

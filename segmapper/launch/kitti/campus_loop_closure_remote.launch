@@ -17,16 +17,15 @@
   <arg name="rviz_config_file" value="$(find segmapper)/launch/kitti/kitti_loop_closure_multi_a.rviz"/>
 
   <!-- ROS parameters -->
-  <rosparam>use_sim_time: false</rosparam>
   <rosparam command="load" file="$(find segmapper)/launch/kitti/campus_loop_closure_remote.yaml"/>
 
   <!-- rviz node -->
-  <node name="visualizer" pkg="rviz" type="rviz" output="screen" respawn="$(arg respawn_value)" args="-d $(arg rviz_config_file)" />
+  <node name="segmap_visualizer" pkg="rviz" type="rviz" output="screen" respawn="$(arg respawn_value)" args="-d $(arg rviz_config_file)" />
 
   <!-- segmapper node -->
   <include file="$(find segmapper)/launch/segmapper.launch">
-    <arg name="icp_configuration_file" value="$(find segmapper)/launch/kitti/icp_dynamic_outdoor.yaml"/>
-    <arg name="icp_input_filters_file" value="$(find segmapper)/launch/kitti/input_filters_outdoor.yaml"/>
+    <arg name="icp_configuration_file" value="$(find segmapper)/launch/kitti/icp_dynamic_outdoor_remote.yaml"/>
+    <arg name="icp_input_filters_file" value="$(find segmapper)/launch/kitti/input_filters_outdoor_remote.yaml"/>
   </include>
 
 

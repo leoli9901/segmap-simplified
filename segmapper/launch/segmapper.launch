@@ -16,6 +16,15 @@
   <node name="segmapper" pkg="segmapper" type="segmapper_node" output="screen" respawn="false" launch-prefix="$(arg launch_prefix)">
     <param name="icp_configuration_file" value="$(arg icp_configuration_file)"/>
     <param name="icp_input_filters_file" value="$(arg icp_input_filters_file)"/>
+    <!--remap from="na1/cloud_deskewed" to="lio_sam/deskew/cloud_deskewed" /> -->
   </node>
+
+  <!-- tf remapper for lio_sam-->
+  <!--node pkg="tf_remapper_cpp" type="tf_remap" name="remapper_1">
+    <rosparam param="old_tf_topic_name">tf </rosparam>
+    <rosparam param="new_tf_topic_name">tf_filtered </rosparam>
+    
+  </node> -->
+
 
 </launch>
