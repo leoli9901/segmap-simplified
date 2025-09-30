@@ -69,3 +69,11 @@
    local-name: tensorflow_ros_cpp
    uri: https://github.com/tradr-project/tensorflow_ros_cpp.git
    version: 3e089a3
+- git:
+   local-name: tf_remapper_cpp
+   uri: https://github.com/tradr-project/tf_remapper_cpp.git
+   version: 59eca1c
+- git:
+   local-name: Multibotnet
+   uri: https://github.com/SWUST-ICAA/Multibotnet.git
+   version: 3629140
